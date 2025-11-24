@@ -134,6 +134,28 @@ try {
                 </a>
             </nav>
 
+            <!-- MENU BANSOS -->
+<div class="nav-section-title mt-3">Program Bansos</div>
+<nav class="nav flex-column">
+
+    <a class="nav-link <?= basename($_SERVER['PHP_SELF']) === 'program_bantuan_list.php' ? 'active' : '' ?>"
+       href="program_bantuan/program_bantuan_list.php">
+       <i class="fa-solid fa-gift"></i> Program Bantuan
+    </a>
+
+    <a class="nav-link <?= basename($_SERVER['PHP_SELF']) === 'pengajuan_list.php' ? 'active' : '' ?>"
+       href="pengajuan_bantuan/pengajuan_list.php">
+       <i class="fa-solid fa-file-circle-plus"></i> Pengajuan Bantuan
+    </a>
+
+    <a class="nav-link <?= basename($_SERVER['PHP_SELF']) === 'penyaluran_list.php' ? 'active' : '' ?>"
+       href="penyaluran_bantuan/penyaluran_list.php">
+       <i class="fa-solid fa-truck"></i> Penyaluran Bantuan
+    </a>
+
+</nav>
+
+
             <div class="nav-section-title">Lainnya</div>
             <nav class="nav flex-column">
                 <a class="nav-link text-danger" href="logout.php">
