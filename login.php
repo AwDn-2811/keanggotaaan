@@ -37,20 +37,40 @@ try {
 
             // Memeriksa apakah password cocok
             if (password_verify($password, $user['password'])) {
-                // Login berhasil, simpan nama depan, role, dan NIK ke dalam session
-                $_SESSION['user_name'] = $user['nama_depan']; // Simpan nama depan di session
-                $_SESSION['role']      = $user['role'];       // Menyimpan role di session
-                $_SESSION['nik']       = $user['nik'];        // ← PENTING untuk dashboard_warga
-                $_SESSION['email']     = $user['email'];      // ← baru, buat backup kalau ada file lain yang butuh
 
+                // Simpan data dasar user
+                $_SESSION['user_name'] = $user['nama_depan'];
+                $_SESSION['role']      = $user['role'];
+                $_SESSION['email']     = $user['email'];
+                $_SESSION['nik']       = $user['nik'];  // Mungkin masih NULL, tapi tidak apa ~ diperbaiki di bawah
+
+                /* ========================================================
+                   AMBIL id_warga & nik DARI TABEL data_warga
+                   BERDASARKAN NIK USER
+                ======================================================== */
+
+                $sqlW = "SELECT id, nik FROM data_warga WHERE nik = :nik LIMIT 1";
+                $stmtW = $pdo->prepare($sqlW);
+                $stmtW->execute([':nik' => $user['nik']]);
+                $wargaRow = $stmtW->fetch(PDO::FETCH_ASSOC);
+
+                // Jika warga ditemukan di data_warga
+                if ($wargaRow) {
+                    $_SESSION['id_warga'] = $wargaRow['id'];
+                    $_SESSION['nik']      = $wargaRow['nik'];  // overwrite biar pasti benar
+                } else {
+                    // Kalau tidak ditemukan → id_warga NULL → akan memunculkan error FK
+                    $_SESSION['id_warga'] = null;
+                }
 
                 // Redirect berdasarkan role pengguna
                 if ($user['role'] == 'admin') {
-                    header("Location: dashboard_admin.php"); // Dashboard untuk admin
+                    header("Location: dashboard_admin.php");
                 } else {
-                    header("Location: dashboard_warga.php"); // Dashboard untuk warga
+                    header("Location: dashboard_warga.php");
                 }
-                exit; // Pastikan tidak ada kode lain yang dijalankan setelah redirect
+                exit;
+
             } else {
                 $error_message = 'Password salah!';
             }

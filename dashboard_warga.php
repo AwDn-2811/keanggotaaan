@@ -132,6 +132,26 @@ try {
     </a>
 </nav>
 
+<div class="nav-section-title">Bantuan Sosial</div>
+<nav class="nav flex-column">
+    <a class="nav-link <?= basename($_SERVER['PHP_SELF']) === 'program_warga.php' ? 'active' : '' ?>" 
+       href="program_warga.php">
+        🎁 Program Bantuan
+    </a>
+
+    <a class="nav-link <?= basename($_SERVER['PHP_SELF']) === 'riwayat_pengajuan.php' ? 'active' : '' ?>" 
+       href="riwayat_pengajuan.php">
+        📝 Riwayat Pengajuan Bansos
+    </a>
+
+    <a class="nav-link <?= basename($_SERVER['PHP_SELF']) === 'riwayat_penyaluran.php' ? 'active' : '' ?>" 
+       href="riwayat_penyaluran.php">
+        📦 Riwayat Penyaluran
+    </a>
+</nav>
+
+
+
 
 
 
