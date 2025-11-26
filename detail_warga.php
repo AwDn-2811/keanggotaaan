@@ -128,7 +128,7 @@ try {
 
                 <a class="nav-link" href="data_mutasi.php">🔁 Data Mutasi</a>
 
-                <a class="nav-link" href="users.php">👤 User</a>
+                <a class="nav-link" href="data_user.php">👤 User</a>
             </nav>
 
             <div class="nav-section-title">Lainnya</div>

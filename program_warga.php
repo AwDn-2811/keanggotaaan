@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_name']) || $_SESSION['role'] !== 'warga') {
 
 require_once __DIR__ . "/includes/db.php";
 
-$user_id = $_SESSION['nik'];
+$id_warga = $_SESSION['id_warga'];
 $today = date('Y-m-d');
 
 $sql = "SELECT * FROM program_bantuan ORDER BY jadwal_mulai DESC";

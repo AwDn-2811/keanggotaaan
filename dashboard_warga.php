@@ -1,19 +1,27 @@
 <?php
 session_start();
 
-// Cek apakah user sudah login dan role = warga
+// =====================
+// PROTEKSI HALAMAN
+// =====================
 if (!isset($_SESSION['user_name']) || $_SESSION['role'] !== 'warga') {
     header("Location: login.php");
     exit();
 }
 
-$nik        = $_SESSION['nik'];       // NIK warga dari session
-$user_name  = $_SESSION['user_name']; // Nama depan dari session
+$nik        = $_SESSION['nik'] ?? null;
+$user_name  = $_SESSION['user_name'] ?? 'Warga';
 
-$host = 'localhost';
-$dbname = 'keanggotaan_warga';
-$username = 'root';
-$password = '';
+if (!$nik) {
+    // Jika session nik kosong, redirect ke logout agar bersih
+    header("Location: logout.php");
+    exit();
+}
+
+$host = "localhost";
+$dbname = "keanggotaan_warga";
+$username = "root";
+$password = "";
 
 $warga = null;
 $mutasi = [];
@@ -27,22 +35,27 @@ try {
         [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
     );
 
-    // Ambil data pribadi dari data_warga berdasarkan NIK
+    // ==========================
+    // AMBIL DATA WARGA BERDASARKAN NIK
+    // ==========================
     $sql = "SELECT * FROM data_warga WHERE nik = :nik LIMIT 1";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([':nik' => $nik]);
     $warga = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Ambil riwayat mutasi dari data_mutasi
+    // ==========================
+    // AMBIL RIWAYAT MUTASI
+    // ==========================
     $sql2 = "SELECT * FROM data_mutasi WHERE nik_warga = :nik ORDER BY tanggal_mutasi DESC";
     $stmt2 = $pdo->prepare($sql2);
     $stmt2->execute([':nik' => $nik]);
     $mutasi = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 
 } catch (PDOException $e) {
-    $error_message = "Error: " . $e->getMessage();
+    $error_message = "Terjadi kesalahan: " . $e->getMessage();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="id">

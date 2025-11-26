@@ -7,8 +7,8 @@ if (!isset($_SESSION['user_name']) || $_SESSION['role'] !== 'warga') {
 
 require_once __DIR__ . "/fungsi_bantuan/fungsi_penyaluran_bantuan.php";
 
-$user_id = $_SESSION['user_id'];
-$riwayat = getRiwayatWarga($user_id);
+$id_warga = $_SESSION['id_warga'];
+$riwayat = getRiwayatWarga($id_warga);
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -43,7 +43,7 @@ $riwayat = getRiwayatWarga($user_id);
                 <td><?= $row['status_penyaluran'] ?></td>
                 <td>
                     <?php if (!empty($row['bukti_penyerahan'])): ?>
-                       <a href="<?= '../' . $row['bukti_penyerahan'] ?>" target="_blank"
+                       <a href="<?= $row['bukti_penyerahan'] ?>" target="_blank"
                           class="btn btn-sm btn-outline-secondary">Lihat Bukti</a>
                     <?php else: ?>
                         <span class="text-muted">Tidak ada</span>

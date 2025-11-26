@@ -70,11 +70,11 @@ try {
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Data Kartu Keluarga - Admin</title>
+    <title>Dashboard Admin - Sistem Pendataan Warga</title>
+
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet"
+
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 
     <style>
@@ -91,42 +91,32 @@ try {
             padding: 1rem 1.25rem;
             border-bottom: 1px solid rgba(255,255,255,0.08);
         }
-        .sidebar .brand h4 { margin: 0; }
-        .sidebar .nav-link { color: #e5e7eb; padding: .6rem 1.25rem; }
-        .sidebar .nav-link.active { background: #020617; font-weight: bold; }
-        .sidebar .nav-link:hover { background: rgba(255,255,255,.06); }
-
+        .sidebar .brand h4 { font-size: 1.1rem; margin: 0; }
+        .sidebar .nav-link {
+            color: #e5e7eb;
+            padding: .6rem 1.25rem;
+            font-size: .95rem;
+            border-radius: 0;
+        }
+        .sidebar .nav-link:hover {
+            background: rgba(255,255,255,0.06);
+        }
+        .sidebar .nav-link.active {
+            background: #020617;
+            font-weight: 600;
+        }
         .sidebar .nav-section-title {
+            font-size: .75rem;
+            text-transform: uppercase;
+            letter-spacing: .08em;
             padding: .75rem 1.25rem .25rem;
             opacity: .6;
-            text-transform: uppercase;
-            font-size: .75rem;
-        }
 
+        }
+        
         .main-content {
             flex: 1;
-            padding: 1.5rem;
-        }
-
-        .btn-group {
-            margin-top: 20px;
-        }
-
-        .text-muted {
-            font-size: 14px;
-        }
-
-        .btn-group .btn {
-            font-size: 13px;
-        }
-
-        .btn-group .btn i {
-            margin-right: 5px;
-        }
-
-        .btn-group .btn:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
+            padding: 1.5rem 1.5rem 2rem;
         }
     </style>
 </head>
@@ -149,8 +139,29 @@ try {
                 <a class="nav-link" href="data_warga.php">👥 Data Warga</a>
                 <a class="nav-link active" href="data_kk.php">🧾 Data Kartu Keluarga</a>
                 <a class="nav-link" href="data_mutasi.php">🔁 Data Mutasi</a>
-                <a class="nav-link" href="users.php">👤 User</a>
+                <a class="nav-link" href="data_user.php">👤 User</a>
             </nav>
+
+             <!-- MENU BANSOS -->
+<div class="nav-section-title mt-3">Program Bansos</div>
+<nav class="nav flex-column">
+
+    <a class="nav-link <?= basename($_SERVER['PHP_SELF']) === 'program_bantuan_list.php' ? 'active' : '' ?>"
+       href="program_bantuan/program_bantuan_list.php">
+       <i class="fa-solid fa-gift"></i> Program Bantuan
+    </a>
+
+    <a class="nav-link <?= basename($_SERVER['PHP_SELF']) === 'pengajuan_list.php' ? 'active' : '' ?>"
+       href="pengajuan_bantuan/pengajuan_list.php">
+       <i class="fa-solid fa-file-circle-plus"></i> Pengajuan Bantuan
+    </a>
+
+    <a class="nav-link <?= basename($_SERVER['PHP_SELF']) === 'penyaluran_list.php' ? 'active' : '' ?>"
+       href="penyaluran_bantuan/penyaluran_list.php">
+       <i class="fa-solid fa-truck"></i> Penyaluran Bantuan
+    </a>
+
+</nav>      
 
             <div class="nav-section-title">Lainnya</div>
             <nav class="nav flex-column">

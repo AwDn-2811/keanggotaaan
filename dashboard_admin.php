@@ -57,19 +57,20 @@ try {
     <style>
         body { background-color: #f5f6fa; }
         .layout-wrapper { min-height: 100vh; }
+        
         .sidebar {
             width: 240px;
             min-height: 100vh;
             background: #111827;
-            color: #e5e7eb;
+            color: #ffffffff;
         }
         .sidebar .brand {
             padding: 1rem 1.25rem;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 1);
         }
         .sidebar .brand h4 { font-size: 1.1rem; margin: 0; }
         .sidebar .nav-link {
-            color: #e5e7eb;
+            color: #ffffffff;
             padding: .6rem 1.25rem;
             font-size: .95rem;
             border-radius: 0;
@@ -128,8 +129,8 @@ try {
                     🔁 Data Mutasi
                 </a>
 
-                <a class="nav-link <?= basename($_SERVER['PHP_SELF']) === 'users.php' ? 'active' : '' ?>"
-                   href="users.php">
+                <a class="nav-link <?= basename($_SERVER['PHP_SELF']) === 'data_user.php' ? 'active' : '' ?>"
+                   href="data_user.php">
                     👤 User
                 </a>
             </nav>

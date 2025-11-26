@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_name']) || $_SESSION['role'] !== 'warga') {
 
 require_once __DIR__ . "/includes/db.php";
 
-$user_id = $_SESSION['nik'];
+$id_warga = $_SESSION['id_warga'];
 
 $sql = "SELECT pg.*, pr.nama_program
         FROM pengajuan_bantuan pg
@@ -15,7 +15,7 @@ $sql = "SELECT pg.*, pr.nama_program
         WHERE pg.id_warga = :id 
         ORDER BY pg.tanggal_pengajuan DESC";
 $stmt = $pdo->prepare($sql);
-$stmt->execute([':id' => $user_id]);
+$stmt->execute([':id' => $id_warga]);
 $data = $stmt->fetchAll();
 ?>
 <!DOCTYPE html>

@@ -166,7 +166,7 @@ $active_link = "data_warga.php"; // Ini file form tambah, tapi menu yang aktif a
 
                 <a class="nav-link <?= ($active_link == 'data_mutasi.php') ? 'active' : '' ?>" href="data_mutasi.php">🔁 Data Mutasi</a>
 
-                <a class="nav-link <?= ($active_link == 'users.php') ? 'active' : '' ?>" href="users.php">👤 User</a>
+                <a class="nav-link <?= ($active_link == 'data_user.php') ? 'active' : '' ?>" href="data_user.php">👤 User</a>
             </nav>
 
             <div class="nav-section-title">Lainnya</div>
